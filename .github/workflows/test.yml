@@ -21,5 +21,9 @@ jobs:
       run: yarn workspace @mavenomics/metapackage run build
     - name: Lint sources
       run: yarn run lint
+    - name: Build and bundle extras
+      run: |
+        yarn workspaces run build:ci
+        yarn workspace @mavenomics/mql-worker run bundle:ci
     - name: Run unit tests
       run: yarn run test --silent
