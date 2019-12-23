@@ -1,0 +1,28 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v1
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
+      with:
+        # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0, lts
+        version: lts
+    - name: Install dependencies from Yarn
+      run: yarn install --frozen-lockfile
+    - name: Build Typescript sources
+      run: yarn workspace @mavenomics/metapackage run build
+    - name: Build extras
+      run: yarn workspaces run build:ci
+    - name: Generate Bundles
+      run: |
+        yarn workspace @mavenomics/mql-worker run bundle:ci
+        yarn workspace @mavenomics/viewer run bundle:ci
+        yarn workspace @mavenomics/standalone run bundle:ci
