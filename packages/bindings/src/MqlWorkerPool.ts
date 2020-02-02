@@ -4,7 +4,6 @@ import { deserialize, serialize, Cache, CancelToken, CancelError } from "@maveno
 import { IExpressionEvaluator } from "./evaluator";
 import { UUID } from "@phosphor/coreutils";
 import { IDisposable, DisposableDelegate } from "@phosphor/disposable";
-import { Disposable } from "./Disposable";
 import { StaticCacheMsg } from "@mavenomics/mql-worker/lib/interfaces";
 
 enum TaskState {
@@ -128,7 +127,7 @@ class StaticCache {
     }
 }
 
-export class MqlWorkerPool extends Disposable {
+export class MqlWorkerPool implements IDisposable {
     private static StaticCache: StaticCache = new StaticCache();
 
     private static CLEANUP_INTERVAL_MS = 5000;
@@ -138,6 +137,7 @@ export class MqlWorkerPool extends Disposable {
     tasks: WorkerTask[];
     evaluator: IExpressionEvaluator | null;
     cleanupTimer: any;
+    private _isDisposed = false;
 
     /**
      *
@@ -151,8 +151,6 @@ export class MqlWorkerPool extends Disposable {
         evaluator: IExpressionEvaluator | undefined,
         private maxWorkerCount: number,
         private cancelTimeout: number) {
-        super();
-
         this.workers = [];
         this.tasks = [];
 
@@ -162,6 +160,8 @@ export class MqlWorkerPool extends Disposable {
 
         this.cleanupTimer = setInterval(this.cleanupWorkers.bind(this), MqlWorkerPool.CLEANUP_INTERVAL_MS);
     }
+
+    public get isDisposed() { return this._isDisposed; }
 
     cleanupWorkers() {
         let idleCount = 0;
@@ -398,7 +398,9 @@ export class MqlWorkerPool extends Disposable {
             this.fillWorkerPool();
     }
 
-    protected disposed(): void {
+    public dispose(): void {
+        if (this._isDisposed) return;
+        this._isDisposed = true;
         clearInterval(this.cleanupTimer);
 
         //Kill any pending tasks

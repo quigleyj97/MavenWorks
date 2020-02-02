@@ -1,7 +1,6 @@
 import * as _ from "lodash";
 import { GlobalsService } from "./GlobalsService";
 import { IDisposable } from "@phosphor/disposable";
-import { Disposable } from "./Disposable";
 import { IExpressionEvaluator } from "./evaluator";
 import { MqlWorkerPool } from "./MqlWorkerPool";
 
@@ -66,11 +65,17 @@ export function getGlobalsFromComment(src: string) {
     return matchedGlobals;
 }
 
-export abstract class BaseBindingsEvaluator extends Disposable implements IBindingsEvaluator {
-    abstract get name(): string;
+export abstract class BaseBindingsEvaluator implements IBindingsEvaluator, IDisposable {
+    private _isDisposed = false;
 
-    disposed(): void {
+    public get isDisposed() { return this._isDisposed; }
+
+    public dispose() {
+        if (this._isDisposed) return;
+        this._isDisposed = true;
     }
+
+    abstract get name(): string;
 
     abstract evaluate(group: string, expr: any, globals: ReadonlyArray<string>): Promise<any>;
 
@@ -113,7 +118,8 @@ class EvalBindingsEvaluator extends BaseBindingsEvaluator {
     }
 
     public dispose() {
-        if (this._isDisposed) return;
+        if (this.isDisposed) return;
+        super.dispose();
         this.evaluator.dispose();
         super.dispose();
     }
@@ -173,9 +179,6 @@ class JavaScriptBindingsEvaluator extends BaseBindingsEvaluator {
         return "JavaScript";
     }
 
-    disposed() {
-    }
-
     public getMetadata() {
         return {
             editorMode: "MQL.js"
@@ -217,9 +220,6 @@ class MqlEvaluator extends BaseBindingsEvaluator {
             newGlobals.delete(match[1]);
         }
         return [...newGlobals];
-    }
-
-    disposed() {
     }
 
     public getMetadata() {
@@ -267,12 +267,12 @@ class NoneBindingsEvaluator extends BaseBindingsEvaluator {
     }
 }
 
-export class BindingsProvider extends Disposable {
+export class BindingsProvider implements IDisposable {
     evaluators: { [name: string]: IBindingsEvaluator };
     workerPool: MqlWorkerPool;
+    private _isDisposed = false;
 
     constructor(globals: GlobalsService, evaluator?: IExpressionEvaluator) {
-        super();
         this.workerPool = new MqlWorkerPool(globals, evaluator, 8, 15000);
         let builtin = [
             new GlobalBindingsEvaluator(globals),
@@ -291,6 +291,8 @@ export class BindingsProvider extends Disposable {
         }, {});
     }
 
+    public get isDisposed() { return this._isDisposed; }
+
     public getBindingNames(): string[] {
         return _.values(this.evaluators).map((ev: IBindingsEvaluator) => ev.name);
     }
@@ -299,7 +301,9 @@ export class BindingsProvider extends Disposable {
         return this.evaluators[type] || new ErrorBindingsEvaluator(type);
     }
 
-    protected disposed(): void {
+    public dispose(): void {
+        if (this._isDisposed) return;
+        this._isDisposed = true;
         for (let e of _.values(this.evaluators))
             e.dispose();
         this.workerPool.dispose();
