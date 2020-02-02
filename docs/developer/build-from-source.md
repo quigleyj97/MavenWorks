@@ -56,6 +56,10 @@ yarn build
 yarn bundle  # Bundles the Viewer, Mql Worker, and Standalone App
 ```
 
+> **Note:** You will need a Java Developer Kit (JDK) installed and on your
+> `$PATH` to build the MQL grammar. We recommend
+> [OpenJDK](https://openjdk.java.net/).
+
 ### 4. Run Standalone MavenWorks
 ```bash
 yarn serve
