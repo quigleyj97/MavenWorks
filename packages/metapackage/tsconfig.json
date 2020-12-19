@@ -14,7 +14,6 @@
     { "path": "../default-parts" },
     { "path": "../help" },
     { "path": "../help-mql" },
-    { "path": "../jupyterutils" },
     { "path": "../layout" },
     { "path": "../mql" },
     { "path": "../mql-tooling" },
@@ -23,8 +22,6 @@
     { "path": "../table" },
     { "path": "../ui" },
     { "path": "../app-cli" },
-    { "path": "../app-jupyter" },
-    { "path": "../app-viewer" },
     { "path": "../app-standalone" },
     { "path": "../config-server" }
   ]

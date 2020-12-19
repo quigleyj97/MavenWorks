@@ -7,7 +7,6 @@
   "include": ["./src/**/*"],
   "files": ["./src/index.ts"],
   "references": [
-    { "path": "../app-jupyter" },
     { "path": "../apputils" },
     { "path": "../chart-parts" },
     { "path": "../coreutils" },

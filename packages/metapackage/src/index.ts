@@ -7,7 +7,6 @@ import "@mavenomics/dashboard-devtools";
 import "@mavenomics/default-parts";
 import "@mavenomics/help";
 import "@mavenomics/help-mql";
-import "@mavenomics/jupyterutils";
 import "@mavenomics/layout";
 import "@mavenomics/mql";
 import "@mavenomics/mql-tooling";
@@ -18,7 +17,5 @@ import "@mavenomics/ui";
 
 // top-level projects
 import "mavenworks";
-import "jupyterlab-mavenworks";
 import "@mavenomics/config-server";
 import "@mavenomics/standalone";
-import "@mavenomics/viewer";

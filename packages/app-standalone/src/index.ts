@@ -17,7 +17,7 @@ import "@mavenomics/table"; // import to plugin table serializer
 // handle import order in CSS properly. cf. https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/200
 import "@jupyterlab/application/style/index.css";
 import "font-awesome/css/font-awesome.css";
-import "jupyterlab-mavenworks/style/index.css"; // TODO: Move out editor CSS?
+// import "jupyterlab-mavenworks/style/index.css"; // TODO: Move out editor CSS?
 import "../style/main.css";
 import { configBrowserPlugin } from "./browser";
 import { login } from "./login";

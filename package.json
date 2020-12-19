@@ -11,7 +11,7 @@
   "scripts": {
     "clean": "yarn workspaces run clean",
     "build": "yarn workspace @mavenomics/metapackage run build && yarn workspaces run build:ci",
-    "bundle": "yarn workspace @mavenomics/mql-worker run bundle:ci && yarn workspace @mavenomics/standalone run bundle:ci && yarn workspace @mavenomics/viewer run bundle:ci",
+    "bundle": "yarn workspace @mavenomics/mql-worker run bundle:ci && yarn workspace @mavenomics/standalone run bundle:ci",
     "serve": "yarn workspace @mavenomics/standalone run serve",
     "registry": "yarn verdaccio --config ./bin/verdaccio-conf.yml",
     "test": "jest",
