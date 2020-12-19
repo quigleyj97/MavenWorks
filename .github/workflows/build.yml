@@ -23,5 +23,4 @@ jobs:
     - name: Generate Bundles
       run: |
         yarn workspace @mavenomics/mql-worker run bundle:ci
-        yarn workspace @mavenomics/viewer run bundle:ci
         yarn workspace @mavenomics/standalone run bundle:ci
