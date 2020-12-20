@@ -27,7 +27,6 @@
     "tslint": "^5.14.0",
     "typedoc": "^0.15.0",
     "typescript": "~3.5.0",
-    "verdaccio": "^4.3.4",
     "webpack": "^4.29.0",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.2.1"

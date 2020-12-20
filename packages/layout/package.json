@@ -36,6 +36,5 @@
     "react": ">=16.8"
   },
   "devDependencies": {
-    "rimraf": "^2.6.3"
   }
 }

@@ -19,10 +19,6 @@
     "test": "echo No tests for @mavenomics/bindings",
     "docs": "typedoc --tsconfig ./docs.tsconfig.json"
   },
-  "devDependencies": {
-    "rimraf": "^2.6.3",
-    "typescript": "*"
-  },
   "dependencies": {
     "@mavenomics/coreutils": "^0.1.0",
     "@mavenomics/mql-worker": "^0.1.0",

@@ -34,8 +34,6 @@
     "jshint": "^2.10.2"
   },
   "devDependencies": {
-    "@types/codemirror": "^0.0.79",
-    "rimraf": "^2.6.3",
-    "webpack": "^4.29.6"
+    "@types/codemirror": "^0.0.79"
   }
 }

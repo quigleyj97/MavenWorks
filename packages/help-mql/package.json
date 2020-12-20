@@ -19,10 +19,6 @@
     "test": "echo pass",
     "docs": "echo No docs for @mavenomics/help-mql"
   },
-  "devDependencies": {
-    "rimraf": "^2.6.3",
-    "typescript": "*"
-  },
   "dependencies": {
     "@mavenomics/coreutils": "^0.1.0",
     "@mavenomics/help": "^0.1.0",

@@ -30,9 +30,5 @@
         "@mavenomics/table": "^0.1.0",
         "@mavenomics/ui": "^0.1.0",
         "@mavenomics/standalone": "^0.1.0"
-    },
-    "devDependencies": {
-        "typescript": "*",
-        "rimraf": "^2.6.3"
     }
 }

@@ -19,10 +19,6 @@
     "test": "echo No tests for @mavenomics/default-parts",
     "docs": "echo No docs for @mavenomics/default-parts"
   },
-  "devDependencies": {
-    "rimraf": "^2.6.3",
-    "typescript": "*"
-  },
   "dependencies": {
     "@jupyterlab/codeeditor": "~1.1.0",
     "@jupyterlab/codemirror": "~1.1.3",

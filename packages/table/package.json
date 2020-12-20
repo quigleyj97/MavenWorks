@@ -18,14 +18,10 @@
     "test": "echo No tests for @mavenomics/table",
     "docs": "typedoc --tsconfig ./docs.tsconfig.json"
   },
-  "devDependencies": {
-    "typescript": "*"
-  },
   "dependencies": {
     "@mavenomics/coreutils": "^0.1.0",
     "apache-arrow": "^0.13.0",
     "base64-js": "^1.3.0",
-    "lodash": "^4.17.11",
-    "rimraf": "^2.6.3"
+    "lodash": "^4.17.11"
   }
 }
