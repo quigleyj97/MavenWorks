@@ -43,7 +43,9 @@ export abstract class RegionWithChildren<
         return metadata;
     }
 
-    public readonly abstract content: Panel;
+    //@ts-ignore The usage here is definitely weird but these classes are getting
+    // refactored as part of Project Midsomer
+    public abstract readonly content: Panel;
     protected readonly metadata!: RegionWithChildren.ParentMetadata<LayoutProps>;
     private readonly addPartOverlay = new Panel();
 

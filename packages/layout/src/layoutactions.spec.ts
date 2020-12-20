@@ -87,6 +87,7 @@ describe("Layout Actions", () => {
                 prunable: true
             });
             const parent = layoutManager.getParentRegion(target);
+            //@ts-ignore Test error in a class that will be removed by Project Midsomer
             expect(parent!.getLayoutProperty("prunable")).toBeTruthy();
         });
     });

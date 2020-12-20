@@ -132,7 +132,7 @@ export class TableEditorWidget extends Widget {
 
 export namespace TableEditorWidget {
     export interface IRowData extends Slick.SlickData {
-        rowname: string;
+        rowname?: string | null;
         [column: string]: any;
     }
 

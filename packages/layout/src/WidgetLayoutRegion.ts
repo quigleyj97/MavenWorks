@@ -24,6 +24,8 @@ export class WidgetLayoutRegion extends DashboardLayoutRegion<WidgetLayoutRegion
 
     typeName = LayoutTypes.WidgetLayoutRegion;
     public readonly guid!: string;
+    //@ts-ignore The usage here is definitely weird but these classes are getting
+    // refactored as part of Project Midsomer
     public readonly content!: Widget;
 
     constructor(owner: LayoutManager, child: Widget, guid: string, regionUuid?: string) {

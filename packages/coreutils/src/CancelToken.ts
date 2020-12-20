@@ -9,12 +9,12 @@ export class CancelError extends Error {
 
 export class CancelToken<T> {
     guid: string;
-    promise: Promise<T>;
+    promise: Promise<T | undefined>;
     isCanceled: boolean;
     private resolve: ((value?: T | PromiseLike<T>) => void) | undefined;
 
     constructor() {
-        this.promise = new Promise(res => this.resolve = res);
+        this.promise = new Promise<T | undefined>(res => this.resolve = res);
         this.guid = uuid4();
         this.isCanceled = false;
     }
@@ -26,7 +26,7 @@ export class CancelToken<T> {
     cancel() {
         if (!this.isCanceled) {
             this.isCanceled = true;
-            this.resolve!();
+            this.resolve!(void 0);
         }
     }
 }

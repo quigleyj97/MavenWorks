@@ -180,7 +180,7 @@ export abstract class DashboardLayoutRegion<LayoutProps extends IDashboardLayout
         this._OnStaleSrc.complete();
         // make sure that these aren't pinned in memory
         delete (this as any)._owner;
-        delete this._parentRegion;
+        this._parentRegion = null;
         super.dispose();
     }
 

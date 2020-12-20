@@ -144,14 +144,14 @@ export class TreeController<T extends TreeModel.TreeNode> {
 
     private async executeCallback<K extends TreeController.Callbacks>(
         name: K,
-        args: ArgsType<TreeController.IOptions<T>[K]>
+        args: Parameters<Required<TreeController.IOptions<T>>[K]>
     ) {
         return await this.executeCallbackSync(name, args);
     }
 
     private executeCallbackSync<K extends TreeController.Callbacks>(
         name: K,
-        args: ArgsType<TreeController.IOptions<T>[K]>
+        args: Parameters<Required<TreeController.IOptions<T>>[K]>
     ) {
         try {
             const fn = this.callbacks[name] as CallableFunction;

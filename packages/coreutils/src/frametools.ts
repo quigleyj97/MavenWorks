@@ -247,7 +247,7 @@ export namespace FrameTools {
     export function EnableFramePointerEvents() {
         // use a copied array to prevent bugs caused by live selections
         for (const frame of Array.from(document.getElementsByTagName("iframe"))) {
-            frame.style.pointerEvents = null;
+            frame.style.pointerEvents = "";
         }
     }
 }

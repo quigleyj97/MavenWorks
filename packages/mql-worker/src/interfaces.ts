@@ -187,7 +187,7 @@ export namespace WorkerResponse {
         url: string;
     }
 
-    interface IStaticCacheRequest extends ITrackedMsg {
+    export interface IStaticCacheRequest extends ITrackedMsg {
         type: MsgType.StaticCacheCmd;
         taskId: any;
         data: StaticCacheMsg.IRequest;

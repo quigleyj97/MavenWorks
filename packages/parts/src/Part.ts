@@ -491,6 +491,7 @@ export namespace Part {
                 return msg.type === "before-option-calc" || msg.type === "after-option-calc";
             }
 
+            //@ts-ignore Error in a class that will be removed by Project Midsomer
             public get isConflatable() { return true; }
             public options: Set<string>;
 
