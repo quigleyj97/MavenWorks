@@ -3,7 +3,7 @@ import { Type, Color } from "@mavenomics/coreutils";
 
 // We need to add the --indent var to CSSProperties, so that React's typings
 // will allow it in element inline styles.
-declare module 'csstype' {
+declare module "csstype" {
     interface Properties {
         "--indent"?: string;
     }
