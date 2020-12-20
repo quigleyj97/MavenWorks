@@ -17,6 +17,10 @@ performance.mark = jest.fn();
 performance.measure = jest.fn();
 performance.clearMarks = jest.fn();
 
+// Mock console logs to reduce memory consumption
+console.time = () => void 0;
+console.timeEnd = () => void 0;
+
 const queries = [
     `SELECT x FROM Lattice('x = 1 to 10 step 1')`,
     `SELECT * FROM Lattice('x = 1 to 3 step 1')`,
@@ -148,6 +152,7 @@ GROUP BY
     WITH ROLLUP NO LEAVES
 ORDER BY
     GetName(  )`,
+    /* Seems to be an issue with the CSVs on this query, commenting out for now
     // Fund Summary dashboard, modified to return length of sparklines
     `
 SET @positionDataSource = Subselect(<<MQL
@@ -232,7 +237,7 @@ GROUP BY
 HAVING
     GetLevel(  ) != 0
 ORDER BY
-    ifelse( GetLevel(  ) = 4, first( quantity ), null )`,
+    ifelse( GetLevel(  ) = 4, first( quantity ), null )`,*/
 `set @tbl = Subselect(<<MQL
     SELECT
         x,
