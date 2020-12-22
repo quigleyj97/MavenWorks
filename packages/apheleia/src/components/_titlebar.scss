@@ -1,0 +1,13 @@
+.aph-titlebar {
+    padding: 0.25em;
+
+    &.inactive {
+        background-color: var(--aph-secondary-color);
+        color: var(--aph-base-text-color);
+    }
+
+    &.active {
+        background-color: var(--aph-accent-color);
+        color: var(--aph-accent-text-color);    
+    }
+}

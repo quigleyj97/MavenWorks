@@ -1,0 +1,71 @@
+// Import Roboto and Big Shoulders Display 300
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300&family=Roboto&display=swap');
+
+body {
+    //#region Font variables
+    --aph-text-font: Roboto;
+    --aph-text-font-weight: 300;
+    --aph-text-font-size: 12pt;
+    --aph-display-font: 'Big Shoulders Display';
+    --aph-display-font-size-h1: 40pt;
+    --aph-display-font-size-h2: 24pt;
+    --aph-display-font-size-h3: 20px;
+    //#endregion
+
+    //#region Colors
+    &,&.dark-theme {
+        --aph-base-color: #07070D;
+        --aph-base-text-color: #F8F8F2;
+        --aph-secondary-color: #262240;
+        --aph-accent-color: #0B368C;
+        --aph-accent-text-color: var(--aph-base-text-color);
+        --aph-attention-color: #5D1033;
+        --aph-attention-text-color: var(--aph-base-text-color);
+        --aph-warn-color: #7E7511;
+        --aph-warn-text-color: var(--aph-base-text-color);
+    }
+    //#endregion
+}
+
+//#region Fonts
+.aph-display-text {
+    font-family: var(--aph-display-font);
+    font-weight: var(--aph-display-font-weight);
+
+    &.h1 {
+        font-size: var(--aph-display-font-size-h1);
+    }
+
+    &.h2 {
+        font-size: var(--aph-display-font-size-h2);
+    }
+
+    &.h3 {
+        font-size: var(--aph-display-font-size-h3);
+    }
+}
+
+.aph-text {
+    font-family: var(--aph-text-font);
+    font-weight: var(--aph-text-font-weight);
+}
+//#endregion
+
+//#region Colors
+// This is where the colors of the theme get applied
+body, .aph-theme-primary {
+    background-color: var(--aph-base-color);
+    color: var(--aph-base-text-color);
+}
+
+.aph-theme-secondary {
+    background-color: var(--aph-secondary-color);
+    // secondary regions shouldn't really have a radically different color
+    color: var(--aph-base-text-color);
+}
+
+.aph-theme-accent {
+    background-color: var(--aph-accent-color);
+    color: var(--aph-accent-text-color);
+}
+//#endregion
