@@ -1,5 +1,26 @@
 .aph-titlebar {
     padding: 0.25em;
+    display: flex;
+    flex-direction: row;
+
+    // reset style
+    button {
+        border: 0;
+        padding: unset;
+        margin: unset;
+        background: unset;
+        color: unset;
+    }
+
+    .title-text {
+        flex-grow: 1;
+        flex-basis: 0px;
+    }
+
+    .title-close {
+        flex-grow: 0;
+        flex-basis: auto;
+    }
 
     &.inactive {
         background-color: var(--aph-secondary-color);
