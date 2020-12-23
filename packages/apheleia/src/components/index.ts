@@ -1,1 +1,1 @@
-export { Titlebar, TitlebarProps } from "./titlebar";
+export { Titlebar, TitlebarProps } from "./titlebar/titlebar";

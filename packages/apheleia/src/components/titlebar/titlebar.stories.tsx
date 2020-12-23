@@ -2,7 +2,7 @@ import * as React from "react";
 import { Meta, Story } from "@storybook/react";
 import { Titlebar, TitlebarProps } from "./titlebar";
 
-import "../../style/index.scss";
+import "../../../style/index.scss";
 
 export default {
     title: 'Layout/Primitives',
