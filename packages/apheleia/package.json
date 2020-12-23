@@ -12,8 +12,8 @@
     "style/*.css"
   ],
   "scripts": {
-    "build": "tsc --build && lessc ./style/index.less ./style/index.css",
-    "build:ci": "lessc ./style/index.less ./style/index.css",
+    "build": "tsc --build",
+    "build:ci": "echo TODO: Setup Sass build",
     "clean": "rimraf ./lib *.tsbuildinfo",
     "lint": "tslint --project .",
     "test": "jest",

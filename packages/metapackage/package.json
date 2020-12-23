@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "@mavenomics/apputils": "^0.1.0",
+        "@mavenomics/apheleia": "^0.1.0",
         "@mavenomics/bindings": "^0.1.0",
         "@mavenomics/chart-parts": "^0.1.0",
         "@mavenomics/coreutils": "^0.1.0",
