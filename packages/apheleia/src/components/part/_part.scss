@@ -1,0 +1,19 @@
+.aph-layoutpart {
+    display: flex;
+    flex-direction: column;
+
+    .aph-titlebar {
+        flex-basis: auto;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    &.hide-titlebar .aph-titlebar {
+        display: none;
+    }
+
+    .child {
+        flex-basis: 0;
+        flex-grow: 1;
+    }
+}

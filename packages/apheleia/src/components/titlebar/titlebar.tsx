@@ -9,8 +9,6 @@ export interface TitlebarProps {
     isActive: boolean;
     /** Fired whenever the titlebar is tapped or clicked */
     onClick: (this: void) => void;
-    /** Fired whenever the titlebar is double-tapped or double-clicked */
-    onDblClick: (this: void) => void;
     /** Fired whenever the titlebar close button is tapped or clicked */
     onClose: (this: void) => void;
 }
@@ -19,7 +17,6 @@ export const Titlebar: React.FC<TitlebarProps> = ({
     text,
     isActive=false,
     onClick,
-    onDblClick,
     onClose,
 }) => {
     const classList = ["aph-titlebar"];
@@ -31,8 +28,7 @@ export const Titlebar: React.FC<TitlebarProps> = ({
     }
 
     return (<div className={classList.join(" ")}
-        onClick={() => onClick.call(void 0)}
-        onDoubleClick={() => onDblClick.call(void 0)}>
+        onClick={() => onClick.call(void 0)}>
             <span className="title-text aph-display-text h3">{text}</span>
             <button className="title-close material-icons md-18" onClick={(ev) => {
                 ev.stopPropagation();

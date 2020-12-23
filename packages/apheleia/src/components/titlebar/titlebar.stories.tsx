@@ -5,7 +5,7 @@ import { Titlebar, TitlebarProps } from "./titlebar";
 import "../../../style/index.scss";
 
 export default {
-    title: 'Layout/Primitives',
+    title: 'Components/Titlebar',
     component: Titlebar,
 } as Meta<TitlebarProps>;
 
