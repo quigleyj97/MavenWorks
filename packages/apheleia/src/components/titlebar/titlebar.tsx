@@ -4,17 +4,17 @@ import "./_titlebar.scss";
 
 export interface TitlebarProps {
     /** The text to display in this titlebar */
-    text: string;
+    text?: string;
     /** Whether this titlebar is active (render prominently) or inactive */
-    isActive: boolean;
+    isActive?: boolean;
     /** Fired whenever the titlebar is tapped or clicked */
-    onClick: (this: void) => void;
+    onClick?: (this: void) => void;
     /** Fired whenever the titlebar close button is tapped or clicked */
-    onClose: (this: void) => void;
+    onClose?: (this: void) => void;
 }
 
 export const Titlebar: React.FC<TitlebarProps> = ({
-    text,
+    text="",
     isActive=false,
     onClick,
     onClose,
@@ -28,11 +28,11 @@ export const Titlebar: React.FC<TitlebarProps> = ({
     }
 
     return (<div className={classList.join(" ")}
-        onClick={() => onClick.call(void 0)}>
+        onClick={() => onClick?.call(void 0)}>
             <span className="title-text aph-display-text h3">{text}</span>
             <button className="title-close material-icons md-18" onClick={(ev) => {
                 ev.stopPropagation();
-                onClose.call(void 0);
+                onClose?.call(void 0);
             }}>
                 close
             </button>

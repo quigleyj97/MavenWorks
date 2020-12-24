@@ -1,0 +1,16 @@
+.aph-stackpanel {
+    display: flex;
+    overflow: hidden;
+
+    &.horizontal {
+        flex-direction: row;
+    }
+
+    &.vertical {
+        flex-direction: column;
+    }
+
+    .stack-child {
+        overflow: hidden;
+    }
+}

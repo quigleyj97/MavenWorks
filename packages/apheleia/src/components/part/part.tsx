@@ -5,7 +5,7 @@ import "./_part.scss";
 
 export interface LayoutPartProps {
     /** The title to display for this region */
-    title: string;
+    title?: string;
     /** Whether this region is active (render prominently) or inactive.
      *
      * An 'active' region is what region the user is interacting with, or most
@@ -14,11 +14,11 @@ export interface LayoutPartProps {
      * external distraction), and clarify where their actions will apply if they
      * use a keyboard shortcut or command.
      */
-    isActive: boolean;
+    isActive?: boolean;
     /** Whether to hide the titlebar */
-    isTitlebarHidden: boolean;
+    isTitlebarHidden?: boolean;
     /** Called whenever the close button on this region is clicked */
-    onClose: (this: void) => void;
+    onClose?: (this: void) => void;
     /** Called whenever this region should become the 'active' region
      * 
      * This is taken to mean one of the following events:
@@ -27,7 +27,7 @@ export interface LayoutPartProps {
      *  - pointerdown anywhere in content that bubbles up to this region
      *  - focusin anywhere in content that bubbles up to this region
      */
-    onBecomeActive: (this: void) => void;
+    onBecomeActive?: (this: void) => void;
 }
 
 /**
@@ -42,14 +42,14 @@ export interface LayoutPartProps {
 export const LayoutPart: React.FC<LayoutPartProps> = ({
     isActive = false,
     isTitlebarHidden = false,
-    title,
+    title = "",
     children,
     onBecomeActive,
     onClose
 }) => {
     const fireOnBecomeActive = () => {
         if (isActive) return;
-        return void onBecomeActive.call(void 0);
+        return void onBecomeActive?.call(void 0);
     };
     const part = React.Children.only(children);
     const titlebarProps = {
