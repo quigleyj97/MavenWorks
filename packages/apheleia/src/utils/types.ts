@@ -1,14 +1,19 @@
-type DataType = 'layout-part' | 'stack-panel';
-
-interface LayoutPartData {
+export interface LayoutPartData {
     type: 'layout-part';
     title: string;
     showTitlebar: boolean;
+    id: string;
 }
 
-interface StackPanelData {
+export interface StackPanelData {
     type: 'stack-panel';
+    direction: 'horizontal' | 'vertical';
     children: BaseRegionData[];
+    stackSizes: string[];
 }
 
-type BaseRegionData = LayoutPartData | StackPanelData;
+export type BaseRegionData = LayoutPartData | StackPanelData;
+
+export interface LayoutData {
+    root: BaseRegionData;
+}

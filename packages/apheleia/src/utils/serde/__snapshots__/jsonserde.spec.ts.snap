@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JsonLayoutSerde tests dumpToString 1`] = `"{\\"version\\":{\\"major\\":0,\\"minor\\":1},\\"layout\\":{\\"root\\":{\\"type\\":\\"stack-panel\\",\\"children\\":[{\\"type\\":\\"layout-part\\",\\"showTitlebar\\":false,\\"title\\":\\"test-part\\",\\"id\\":\\"test-part\\"}],\\"stackSizes\\":[\\"200px\\"],\\"direction\\":\\"vertical\\"}}}"`;
+
+exports[`JsonLayoutSerde tests loadFromString 1`] = `
+Object {
+  "root": Object {
+    "children": Array [],
+    "stackSizes": Array [],
+    "type": "stack-panel",
+  },
+}
+`;

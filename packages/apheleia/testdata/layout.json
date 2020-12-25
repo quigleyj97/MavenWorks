@@ -1,0 +1,13 @@
+{
+    "version": {
+        "major": 0,
+        "minor": 1
+    },
+    "layout": {
+        "root": {
+            "type": "stack-panel",
+            "children": [],
+            "stackSizes": []
+        }
+    }
+}
