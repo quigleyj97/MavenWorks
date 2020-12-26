@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`XmlLayoutSerde parses doc 1`] = `
+Object {
+  "root": Object {
+    "children": Array [
+      Object {
+        "id": "input_1",
+        "showTitlebar": true,
+        "title": "Input",
+        "type": "layout-part",
+      },
+      Object {
+        "id": "output_grid",
+        "showTitlebar": false,
+        "title": "SlickGrid",
+        "type": "layout-part",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "id": "slider_range",
+            "showTitlebar": true,
+            "title": "Range",
+            "type": "layout-part",
+          },
+          Object {
+            "id": "spinner",
+            "showTitlebar": true,
+            "title": "Category",
+            "type": "layout-part",
+          },
+        ],
+        "direction": "vertical",
+        "stackSizes": Array [
+          "1.5em",
+          "1.5em",
+        ],
+        "type": "stack-panel",
+      },
+    ],
+    "direction": "horizontal",
+    "stackSizes": Array [
+      "1",
+      "1",
+      "1",
+    ],
+    "type": "stack-panel",
+  },
+}
+`;
+
+exports[`XmlLayoutSerde serializes layout 1`] = `"<LAYOUT version=\\"0.1\\"><STACK direction=\\"vertical\\"><PART title=\\"test-part\\" id=\\"test-part\\" showTitlebar=\\"false\\" stackSize=\\"200px\\"/></STACK></LAYOUT>"`;

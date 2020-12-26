@@ -1,0 +1,13 @@
+<Layout version="0.1">
+    <Stack>
+        <Part id="input_1"
+            title="Input" />
+        <Part id="output_grid"
+            title="SlickGrid"
+            showTitlebar="false" />
+        <Stack direction="vertical">
+            <Part id="slider_range" title="Range" stackSize="1.5em" />
+            <Part id="spinner" title="Category" stackSize="1.5em" />
+        </Stack>
+    </Stack>
+</Layout>
