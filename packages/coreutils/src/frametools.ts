@@ -1,5 +1,3 @@
-import { DisposableDelegate } from "@phosphor/disposable";
-
 /**
  * A set of utility functions and helpers for IFrames
  */
@@ -208,11 +206,11 @@ export namespace FrameTools {
             handlers.push({ev, handler: handleFocusEvent as EventListener});
         }
 
-        return new DisposableDelegate(() => {
+        return { dispose: () => {
             for (const fn of handlers) {
                 childDocument.removeEventListener(fn.ev, fn.handler);
             }
-        });
+        }};
     }
 
     /**

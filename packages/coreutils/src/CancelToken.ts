@@ -1,5 +1,4 @@
-import { UUID } from "@phosphor/coreutils";
-import uuid4 = UUID.uuid4;
+import { uuid4 } from "./uuid";
 
 export class CancelError extends Error {
     constructor(msg: string) {

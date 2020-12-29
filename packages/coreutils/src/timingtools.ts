@@ -1,16 +1,18 @@
-import { UUID } from "@phosphor/coreutils";
-
 /**
+ * @deprecated This does not work except as a dev tool. Do not use in new code.
+ *
  * Note: This doesn't expose a way of showing these timing trees to users, they
  * only exist right now as a glorified form of console.log. When we find a
  * thread-local storage mechanism we like, we can re-implement true timing trees
  */
 
+import { uuid4 } from "./uuid";
+
 export function StartTimingWithContext<T>(
     name: string,
     func: () => Promise<T>
 ): Promise<{ error: null, result: T, context: null } | { error: any, result: null, context: null }> {
-    const guid = UUID.uuid4();
+    const guid = uuid4();
     performance.mark(guid + "start");
     // also use console.time
     console.time(name + " [guid:" + guid + "]");
@@ -38,7 +40,7 @@ export function StartTiming<T>(name: string, func: () => Promise<T>): Promise<T>
 }
 
 export function StartTimingSync<T>(name: string, func: () => T): T {
-    const guid = UUID.uuid4();
+    const guid = uuid4();
     performance.mark(guid + "start");
     console.time(name + " [guid:" + guid + "]");
     let res: T | undefined;
@@ -62,7 +64,7 @@ export function StartTimingSync<T>(name: string, func: () => T): T {
 }
 
 export async function StartTimingAsync<T>(name: string, func: () => Promise<T>): Promise<T> {
-    const guid = UUID.uuid4();
+    const guid = uuid4();
     performance.mark(guid + "start");
     console.time(name + " [guid:" + guid + "]");
     let res: T | undefined;

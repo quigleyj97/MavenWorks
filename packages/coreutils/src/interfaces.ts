@@ -5,6 +5,8 @@ import { Observable } from "rxjs";
  * Staleness can be set by an external component, and includes an event for reacting to staleness.
  *
  * Staleness should not re-emit if the implementor is already stale.
+ *
+ * @deprecated New code should not use this interface.
  */
 export interface IStaleable {
     readonly isStale: boolean;
@@ -18,6 +20,8 @@ export interface IStaleable {
  * be set by the implementor.
  *
  * Dirtiness should not re-emit if the implementor is already dirty.
+ *
+ * @deprecated New code should not use this interface
  */
 export interface IDirtyable {
     readonly isDirty: boolean;

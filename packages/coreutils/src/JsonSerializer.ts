@@ -1,3 +1,5 @@
+/** @deprecated Do not use any code in this file. Slated for removal as part of #2. */
+
 // This is a legacy file from WebMaven
 // tslint:disable
 // Pass the obj through the serialize functions so that we can JSON stringify the result.
@@ -7,6 +9,7 @@ import { Converters } from "./conversions";
 
 let registeredSerializers: {[index: string]: any} = {};
 
+/** @deprecated Do not use. */
 export function registerType(name: string,
                              serialize: (obj: any, serialize: (obj: any) => any) => any,
                              deserialize: (obj: any, deserialize: (obj: any) => any) => any) {
@@ -127,6 +130,7 @@ let deserializeError = function (o: any, deserialize?: (obj: any) => any) {
     return newError;
 };
 
+/** @deprecated Do not use. */
 export function serialize(obj: any): any {
     if (obj == null) // undefined becomes null
         return null;
@@ -170,6 +174,7 @@ export function serialize(obj: any): any {
     throw Error("Attempted to serialize unsupported type: " + obj.constructor.name);
 }
 
+/** @deprecated Do not use. */
 export function deserialize(obj: any): any {
     if (obj == null) {
         return null;

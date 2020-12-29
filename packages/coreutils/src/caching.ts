@@ -1,5 +1,4 @@
 import { AsyncTools } from "./asynctools";
-import { PromiseDelegate } from "@phosphor/coreutils";
 
 /**
  * A locking, generic cache; used by StaticCache and the query Cache.
@@ -9,6 +8,8 @@ import { PromiseDelegate } from "@phosphor/coreutils";
  * @template K Key type
  * @template T Cache data type. For good null hygiene, make sure this does not
  * include the `undefined` or `void` types!
+ * @deprecated Do not use this in new code without first affirming that locking
+ * caches are the most appropriate tool.
  */
 export class Cache<K, T> {
     private store = new Map<K, T>();
@@ -260,8 +261,8 @@ export namespace Cache {
     {
         public readonly lockId: number;
         public readonly isWrite: boolean;
-        private _aquired = new PromiseDelegate<void>();
-        private _released = new PromiseDelegate<void>();
+        private _aquired = new AsyncTools.Delegate<void>();
+        private _released = new AsyncTools.Delegate<void>();
 
         constructor(id: number, isWrite: boolean) {
             super();
@@ -276,10 +277,10 @@ export namespace Cache {
             await super.aquire();
             this.lock.then(() => {
                 this._released.resolve();
-                this._released = new PromiseDelegate<void>();
+                this._released = new AsyncTools.Delegate<void>();
             });
             this._aquired.resolve();
-            this._aquired = new PromiseDelegate<void>();
+            this._aquired = new AsyncTools.Delegate<void>();
         }
     }
 }

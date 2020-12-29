@@ -1,5 +1,3 @@
-import { PromiseDelegate } from "@phosphor/coreutils";
-
 /**
  * A set of utilities for working with asynchronous things.
  */
@@ -7,8 +5,9 @@ export namespace AsyncTools {
     /**
      * Wait some number of milliseconds before continuing.
      *
-     * This returns a promise that resolves when at least 1 VM turn has passed- this
-     * means that wait cannot wait for any shorter than ~1-4ms depending on browser.
+     * This returns a promise that resolves when at `ms` milliseconds` have 
+     * passed- at least a single VM turn. This means that wait cannot wait for
+     * any shorter than ~1-4ms depending on browser.
      */
     export function wait(ms?: number) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -40,11 +39,11 @@ export namespace AsyncTools {
             ),
             timeout)
         );
-        let delegate = new PromiseDelegate<void>();
+        let delegate = new Delegate();
         let intervalId = setInterval(() => {
             try {
                 if (predicate.call(void 0)) {
-                    delegate.resolve(void 0);
+                    delegate.resolve();
                 }
             } catch (e) {
                 delegate.reject(e);
@@ -62,6 +61,9 @@ export namespace AsyncTools {
      *
      * Consumers can aquire locks, and can `await` the lock to be notified when it
      * is released.
+     * 
+     * @deprecated Do not use this class in new code without first affirming that
+     * the lock will not churn, and is the most appropriate locking mechanism.
      *
     */
     export class Mutex {
@@ -78,19 +80,28 @@ export namespace AsyncTools {
 
         /**
          * Request the lock
+         * 
+         * @deprecated Use the correctly-named acquire()
          *
          * @returns A promise that will not resolve until a single requestor has been granted the lock.
          *
          * ...just pretend I didn't misspell acquire
          */
-        public async aquire(): Promise<void> {
+        public async aquire(): Promise<void> { return this.acquire(); }
+
+        /**
+         * Request the lock
+         *
+         * @returns A promise that will spin until the requestor has been granted the lock.
+         */
+        public async acquire(): Promise<void> {
             if (this._lock != null) {
                 await this._lock;
                 // re-attempt to get the lock. This opens a stack overflow issue
                 // with deadlocks, where a lock with sufficient churn and a large
                 // number of requestors might break. I think that's rather
                 // unlikely given our use cases, but worth noting down.
-                return this.aquire();
+                return this.acquire();
             }
             this._lock = new Promise((resolve) => {
                 this.resolve = resolve;
@@ -104,6 +115,32 @@ export namespace AsyncTools {
             }
             this.resolve();
             this._lock = undefined;
+        }
+    }
+
+    export class Delegate<T = void, R = any> {
+        // promise callbacks are executed inline, but TSC can't discern that
+        private _resolve!: (arg: T) => void;
+        private _reject!: (arg: R) => void;
+        private readonly _promise: Promise<T>;
+
+        constructor() {
+            this._promise = new Promise<T>((resolve, reject) => {
+                this._resolve = resolve;
+                this._reject = reject;
+            });
+        }
+
+        public get promise() {
+            return this._promise;
+        }
+
+        public resolve(arg: T) {
+            this._resolve(arg);
+        }
+
+        public reject(arg: R) {
+            this._reject(arg);
         }
     }
 }
