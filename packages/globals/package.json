@@ -1,0 +1,27 @@
+{
+  "name": "@mavenomics/globals",
+  "version": "0.1.2",
+  "description": "Globals and the Globals Service",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "repository": "https://github.com/Mavenomics/MavenWorks",
+  "author": "Mavenomics, Inc",
+  "license": "GPL-3.0",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "build:ci": "echo pass",
+    "clean": "rimraf ./lib *.tsbuildinfo",
+    "lint": "tslint --project .",
+    "test": "jest",
+    "docs": "typedoc --tsconfig ./docs.tsconfig.json"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@mavenomics/types": "^0.1.2",
+    "@mavenomics/coreutils": "^0.1.2",
+    "rxjs": "^6.6.3"
+  }
+}
