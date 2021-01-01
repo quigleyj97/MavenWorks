@@ -8,5 +8,5 @@ export { Color } from "./Color";
 export { Converters, PartialConverter, Converter, JSONObject } from "./conversions";
 export { serialize, deserialize } from "./JsonSerializer";
 export { Types, Type } from "./builtin";
-export { IStaleable, IDirtyable } from "./interfaces";
+export * from "./interfaces";
 export { Cache } from "./caching";
