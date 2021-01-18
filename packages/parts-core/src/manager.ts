@@ -2,10 +2,22 @@ import { PartContext } from "./context";
 import { ILinkage, NullLinkage } from "./linkage";
 import { IPart, IPartMetadata } from "./part";
 
+/**
+ * Class for managing the execution and updating of Parts.
+ *
+ * @export
+ * @class PartManager
+ */
 export class PartManager {
     private parts: Map<string, IPart> = new Map();
     private contextsByPartId: Map<string, PartContext> = new Map();
 
+    /**
+     * Given an instantiated part, add it to the Part Manager and render
+     *
+     * @param {AddPartArgs} {part, partId, metadata, node, savedOptions}
+     * @memberof PartManager
+     */
     public addPart({part, partId, metadata, node, savedOptions}: AddPartArgs) {
         this.assertNoPartWithId(partId);
         let options: Record<string, ILinkage> = {};
@@ -22,31 +34,52 @@ export class PartManager {
         this.initializePart(partId);
     }
 
+    /**
+     * Initialize the given part, then render it once initialization is complete.
+     * If there are errors in initialization or rendering, the part will be
+     * incompletely setup.
+     *
+     * @param {string} partId
+     * @memberof PartManager
+     */
     public initializePart(partId: string) {
         const part = this.getPartOrThrow(partId);
         const context = this.getContextOrThrow(partId);
         this.callAndReportError(() => part.initialize(context), context)
             .then(res => {
                 if (res) {
-                    this.renderPart(partId);
+                    return this.renderPart(partId);
                 } else {
                     console.error("Not rendering part " + partId + " due to an error in initalization");
                 }
-            });
-    }
-
-    public renderPart(partId: string) {
-        const part = this.getPartOrThrow(partId);
-        const context = this.getContextOrThrow(partId);
-        const options = context.collectOptionValues();
-        this.callAndReportError(() => part.render(options), context)
+                return res;
+            })
             .then(res => {
+                // TODO: Better state tracking for parts so users can recover from this
                 if (!res) {
                     console.error("Error when rendering part " + partId + ", not setting up update hooks");
                 } else {
                     this.setupUpdateHooks(partId);
                 }
-            });
+            });;
+    }
+
+    /**
+     * Render the given part.
+     *
+     * @param {string} partId
+     * @memberof PartManager
+     */
+    public renderPart(partId: string) {
+        const part = this.getPartOrThrow(partId);
+        const context = this.getContextOrThrow(partId);
+        const options = context.collectOptionValues();
+        return this.callAndReportError(() => part.render(options), context);
+    }
+
+    /** Retrieve a part by it's part ID. */
+    public getPartById(partId: string): Readonly<IPart> | undefined {
+        return this.parts.get(partId);
     }
 
     private setupUpdateHooks(partId: string) {
