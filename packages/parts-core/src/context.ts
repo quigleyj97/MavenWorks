@@ -23,7 +23,7 @@ export class PartContext implements IPartContext, IDisposable {
 
     public setOption(optionName: string, value: unknown) {
         this.getLinkageOrThrow(optionName)
-            .setValue??(this.getClientId(optionName), value);
+            .setValue?.(this.getClientId(optionName), value);
     }
 
     public collectOptionValues() {

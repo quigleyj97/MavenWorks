@@ -17,6 +17,15 @@ describe("NullLinkage", () => {
         }).not.toThrow();
     });
 
+    test("#dispose and then setting value", () => {
+        const value = new NullLinkage(42);
+        value.dispose();
+        value.setValue("test", 24);
+        // since it was disposed, we expect the Rx hooks underpinning this to
+        // have completed (thus meaning it won't accept any more updates)
+        expect(value.getValue()).toEqual(42);
+    })
+
     test("Get value without any updates", () => {
         const val = new NullLinkage(42);
         expect(val.getValue()).toEqual(42);
