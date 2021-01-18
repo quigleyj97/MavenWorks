@@ -1,3 +1,4 @@
+import { IDisposable } from "@mavenomics/coreutils";
 import { PartContext } from "./context";
 import { ILinkage, NullLinkage } from "./linkage";
 import { IPart, IPartMetadata } from "./part";
@@ -8,7 +9,7 @@ import { IPart, IPartMetadata } from "./part";
  * @export
  * @class PartManager
  */
-export class PartManager {
+export class PartManager implements IDisposable {
     private parts: Map<string, IPart> = new Map();
     private contextsByPartId: Map<string, PartContext> = new Map();
 
@@ -80,6 +81,16 @@ export class PartManager {
     /** Retrieve a part by it's part ID. */
     public getPartById(partId: string): Readonly<IPart> | undefined {
         return this.parts.get(partId);
+    }
+
+    /** Dispose of resources held by the PartManager */
+    public dispose() {
+        for (const ctx of this.contextsByPartId.values()) {
+            ctx.dispose();
+        }
+        for (const part of this.parts.values()) {
+            part.dispose();
+        }
     }
 
     private setupUpdateHooks(partId: string) {

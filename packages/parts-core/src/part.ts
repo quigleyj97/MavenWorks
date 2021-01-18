@@ -1,4 +1,6 @@
-export interface IPart {
+import { IDisposable } from "@mavenomics/coreutils";
+
+export interface IPart extends IDisposable {
     /**
      * Given the part context, setup first-time state for this part.
      *
