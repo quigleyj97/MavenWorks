@@ -24,7 +24,7 @@
     "@mavenomics/mql-worker": "^0.1.0",
     "@phosphor/application": "^1.6.0",
     "@phosphor/disposable": "^1.1.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "rxjs": "^6.4.0"
   },
   "peerDependencies": {
